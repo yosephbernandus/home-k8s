@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cuda-test-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: cuda-test
+        image: localhost:32000/cuda-test:latest
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+      restartPolicy: Never
+  backoffLimit: 4
